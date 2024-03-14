@@ -9,7 +9,6 @@ similarity = pickle.load(open('similarity.pkl', 'rb'))
 api_key = st.secrets['API_KEY']
 
 def fetch_poster(movie_id):
-    api_key = 'a19e33c09e256f12a04c3cd4e38a9c6c'
     url = fr'https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US'
     resp = requests.get(url)
     data = resp.json()
