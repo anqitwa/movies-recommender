@@ -6,7 +6,7 @@ import requests
 mov_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(mov_dict)
 similarity = pickle.load(open('similarity.pkl', 'rb'))
-
+api_key = st.secrets['API_KEY']
 
 def fetch_poster(movie_id):
     api_key = 'a19e33c09e256f12a04c3cd4e38a9c6c'
