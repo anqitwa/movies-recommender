@@ -14,6 +14,11 @@ def fetch_poster(movie_id):
     data = resp.json()
     return 'https://image.tmdb.org/t/p/w500/' + data['poster_path']
 
+def release_year(movie_id):
+    url = fr'https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US'
+    resp = requests.get(url)
+    data = resp.json()
+    return (data['release_data'])[:4]
 
 def recommend(movie):
     movie_idx = movies[movies['title'] == movie].index[0]
@@ -24,7 +29,9 @@ def recommend(movie):
 
     for i in movies_list:
         movie_id = movies.iloc[i[0]].movie_id
-        recommended_movies.append(movies.iloc[i[0]].title)
+        movie_title = movies.iloc[i[0]].title
+        movie_year = release_year(movie_id)
+        recommended_movies.append(f"{movie_title} ({movie_year})")
         recommended_movies_posters.append(fetch_poster(movie_id))
     return recommended_movies, recommended_movies_posters
 
