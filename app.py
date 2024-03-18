@@ -18,7 +18,7 @@ def release_year(movie_id):
     url = fr'https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US'
     resp = requests.get(url)
     data = resp.json()
-    return (data['release_data'])[:4]
+    return (data['release_date'])[:4]
 
 def recommend(movie):
     movie_idx = movies[movies['title'] == movie].index[0]
